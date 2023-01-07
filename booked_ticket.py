@@ -5,7 +5,7 @@ def bookTicket(source, destination, person_deatil, fare, distance):
     calculated_distance = distance[(source ,destination)]
 
     ticket_detail = person_deatil
-    current_time = datetime.datetime.now()
+    current_time = str(datetime.datetime.now())
 
     ticket_detail["fare"] = calculated_fare
     ticket_detail["ticket_booking_time"] = current_time
