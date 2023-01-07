@@ -1,9 +1,11 @@
 
 from datetime import datetime
-import re
 from journey_detail import *
 from booked_ticket import *
 from print_detail import *
+from validation import *
+from update_json import *
+from generate_pnr import *
 def isSourceAndDestinationValid(destination, source):
     if (source not in source_available) or (source == desti):
         print("we dont provide service from this source")
@@ -27,6 +29,8 @@ def takePersonDetail():
                      "email_id" :email_id,
                      "mobile_no" :mobile_no}
     return person_detail
+
+ticket_dict = {}
 print("******Welcome to Online Bus Reversation Portal*******\n")
 all_booked_ticket = []
 restart = "Yes"
@@ -56,10 +60,18 @@ while (restart == "Yes"):
 
         all_booked_ticket.append(booked_ticket)
 
+
     restart = str(input("\nplease enter Yes to  book another ticket:\t"))
+
+pnr_number = GeneratePNR();
+
+ticket_dict[pnr_number] = all_booked_ticket
+
+SaveDataToJson(ticket_dict)
 
 print("********Thanks for using our services***********")
 
 printBookedTicketDetail(all_booked_ticket)
+
 
 
